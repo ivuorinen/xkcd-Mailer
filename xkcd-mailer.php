@@ -6,9 +6,8 @@
      * strip with alt/title-text underneath the image.
      *
      * @author Ismo Vuorinen
-     * @version $Id$
+     * @version 23 August, 2010
      * @license http://www.opensource.org/licenses/mit-license.php The MIT License
-     * @copyright 23 August, 2010
      * @package default
      **/
     
