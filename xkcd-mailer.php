@@ -15,7 +15,7 @@
     date_default_timezone_set("Europe/Helsinki");
     
     // Your destination
-    $mail = "ivuorinen@gmail.com";
+    $mail = "ivuorinen@me.com";
     $from = "xkcd mailer <xkcdmailer@example.com>";
 
     $feed = "http://xkcd.com/atom.xml";
@@ -35,6 +35,6 @@
     $msg = "<h1><a href=\"{$item->id}\">{$item->title}</a></h1>\n"
         . "<small>Posted {$date}</small><br />\n"
         . $item->summary."<br />\n"
-        . "<p>{$punchline}</p>\n";
+        . "<p style='color:#000;background:#000;'>{$punchline}</p>\n";
 
     mail($mail, $subject, $msg, $headers);
