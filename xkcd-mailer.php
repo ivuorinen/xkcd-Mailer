@@ -6,17 +6,18 @@
      * strip with alt/title-text underneath the image.
      *
      * @author Ismo Vuorinen
-     * @version 23 August, 2010
+     * @version 1.0.20130619
      * @license http://www.opensource.org/licenses/mit-license.php The MIT License
      * @package default
      **/
-    
-    // Your timezone, PHP5 required.
-    date_default_timezone_set("Europe/Helsinki");
-    
-    // Your destination
-    $mail = "ivuorinen@me.com";
-    $from = "xkcd mailer <xkcdmailer@example.com>";
+
+    // Use config.example.php as base for your configurations.
+    $here = dirname( __FILE__ );
+    if( !is_readable($here . '/config.php') ) {
+        die("Please configure me. I don't know where I should sent the comic. (Config file {$here}/config.php missing.)");
+    } else {
+        include_once($here . '/config.php');
+    }
 
     $feed = "http://xkcd.com/atom.xml";
     $data = simplexml_load_file($feed);
