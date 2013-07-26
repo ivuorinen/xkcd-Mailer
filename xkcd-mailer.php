@@ -20,7 +20,24 @@
     }
 
     $feed = "http://xkcd.com/atom.xml";
-    $data = simplexml_load_file($feed);
+
+    // Check if http:// wrapper is allowed
+    if( ini_get('allow_url_fopen') ) {
+      $data = simplexml_load_file($feed);
+    } else {
+      // If http:// wrapper is disabled (by allow_url_fopen=0, for example), then fall back on cURL
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $feed);
+      curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+      $result = curl_exec($ch);
+      curl_close($ch);
+
+      $data = simplexml_load_string($result);
+    }
+
     $item = $data->entry[0];
     $date = date("Y-m-d", strtotime($item->updated));
     preg_match("#title=\"(.+)\"#iU", $item->summary, $t);
