@@ -12,6 +12,8 @@
      **/
 
     // Use config.example.php as base for your configurations.
+	$lastfile = "last.txt";
+
     $here = dirname( __FILE__ );
     if( !is_readable($here . '/config.php') ) {
         die("Please configure me. I don't know where I should sent the comic. (Config file {$here}/config.php missing.)");
@@ -39,20 +41,41 @@
     }
 
     $item = $data->entry[0];
-    $date = date("Y-m-d", strtotime($item->updated));
-    preg_match("#title=\"(.+)\"#iU", $item->summary, $t);
 
-    // To send HTML mail, the Content-type header must be set
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-    $headers .= 'From: '. $from . "\r\n";
+	if (file_exists($lastfile)) {
+		$f = fopen($lastfile, 'r');
+		$last = (int) fread($f, 1024);
+		fclose($f);
+	} else {
+		$last = 0;
+	}
+	$parts = explode('/', $item->id);
+	$current = (int) $parts[3];
+	if ($current > $last) {
+		$date = date("Y-m-d", strtotime($item->updated));
+		preg_match("#title=\"(.+)\"#iU", $item->summary, $t);
 
-    $subject    = "xkcd {$date}: {$item->title}";
-    $punchline  = $t[1];
+		// To send HTML mail, the Content-type header must be set
+		//$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers = 'Content-type: text/html; charset=UTF-8' . "\r\n";
+		$headers .= 'From: '. $from . "\r\n";
 
-    $msg = "<h1><a href=\"{$item->id}\">{$item->title}</a></h1>\n"
-        . "<small>Posted {$date}</small><br />\n"
-        . $item->summary."<br />\n"
-        . "<p style='color:#000;background:#000;'>{$punchline}</p>\n";
+		$subject    = "xkcd {$date}: {$item->title}";
+		$punchline  = $t[1];
 
-    mail($mail, $subject, $msg, $headers);
+		$msg = "<html><body><h1><a href=\"{$item->id}\">{$item->title}</a></h1>\n"
+			. "<small>Posted {$date}</small><br />\n"
+			. $item->summary."<br />\n"
+			. "<p>{$punchline}</p></body></html>\n";
+
+		mail($mail, $subject, $msg, $headers);
+
+		$f = fopen($lastfile, 'w');
+		fwrite($f, $current);
+		fclose($f);
+
+		echo "New last is $current (was $last)\n";
+	} else {
+		echo "No new XKCD: last=$last current=$current\n";
+	}
+?>
