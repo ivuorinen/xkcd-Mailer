@@ -13,3 +13,5 @@ date_default_timezone_set("Europe/Helsinki");
 $mail = "your@email.com";
 $from = "xkcd mailer <xkcdmailer@example.com>";
 
+// File to write ID of last post to
+$lastfile = "last.txt";
