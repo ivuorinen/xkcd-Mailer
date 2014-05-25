@@ -5,10 +5,14 @@
      * Sends HTML-email containing hotlinked latest xkcd
      * strip with alt/title-text underneath the image.
      *
-     * @author Ismo Vuorinen
-     * @version 1.0.20130619
-     * @license http://www.opensource.org/licenses/mit-license.php The MIT License
-     * @package default
+     * @category Default
+     * @package  Default
+     * @author   Ismo Vuorinen <ivuorinen@me.com>
+     * @author   wojas <https://github.com/wojas>
+     * @author   Raam Dev <https://github.com/raamdev>
+     * @license  The MIT License http://www.opensource.org/licenses/mit-license.php
+     * @version  1.0.20140525
+     * @link     https://github.com/ivuorinen/xkcd-Mailer
      **/
 
     // Use config.example.php as base for your configurations.
