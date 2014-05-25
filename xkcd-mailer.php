@@ -14,8 +14,8 @@
     // Use config.example.php as base for your configurations.
     $lastfile = "last.txt";
 
-    $here = dirname( __FILE__ );
-    if( !is_readable($here . '/config.php') ) {
+    $here = dirname(__FILE__);
+    if (! is_readable($here . '/config.php')) {
         die("Please configure me. I don't know where I should sent the comic. (Config file {$here}/config.php missing.)");
     } else {
         include_once($here . '/config.php');
@@ -24,7 +24,7 @@
     $feed = "http://xkcd.com/atom.xml";
 
     // Check if http:// wrapper is allowed
-    if( ini_get('allow_url_fopen') ) {
+    if (ini_get('allow_url_fopen')) {
         $data = simplexml_load_file($feed);
     } else {
         // If http:// wrapper is disabled (by allow_url_fopen=0, for example), then fall back on cURL
@@ -43,14 +43,14 @@
     $item = $data->entry[0];
 
     if (file_exists($lastfile)) {
-        $f = fopen($lastfile, 'r');
+        $f    = fopen($lastfile, 'r');
         $last = (int) fread($f, 1024);
         fclose($f);
     } else {
         $last = 0;
     }
 
-    $parts = explode('/', $item->id);
+    $parts   = explode('/', $item->id);
     $current = (int) $parts[3];
 
     if ($current > $last) {
