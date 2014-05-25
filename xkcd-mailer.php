@@ -18,7 +18,7 @@
     if (! is_readable($here . '/config.php')) {
         die("Please configure me. I don't know where I should sent the comic. (Config file {$here}/config.php missing.)");
     }
-    include_once($here . '/config.php');
+    require_once $here . '/config.php';
 
     $feed = "http://xkcd.com/atom.xml";
 
