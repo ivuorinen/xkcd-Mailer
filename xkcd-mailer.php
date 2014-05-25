@@ -17,9 +17,8 @@
     $here = dirname(__FILE__);
     if (! is_readable($here . '/config.php')) {
         die("Please configure me. I don't know where I should sent the comic. (Config file {$here}/config.php missing.)");
-    } else {
-        include_once($here . '/config.php');
     }
+    include_once($here . '/config.php');
 
     $feed = "http://xkcd.com/atom.xml";
 
