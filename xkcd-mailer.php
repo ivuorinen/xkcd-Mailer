@@ -41,12 +41,11 @@
 
     $item = $data->entry[0];
 
+    $last = 0;
     if (file_exists($lastfile)) {
         $f    = fopen($lastfile, 'r');
         $last = (int) fread($f, 1024);
         fclose($f);
-    } else {
-        $last = 0;
     }
 
     $parts   = explode('/', $item->id);
