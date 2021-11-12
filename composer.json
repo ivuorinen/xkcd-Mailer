@@ -18,9 +18,9 @@
     }
   ],
   "scripts": {
-    "lint": "phpcs --warning-severity=0 .",
-    "lint-all": "phpcs .",
-    "fix": "phpcbf ."
+    "lint": "phpcs --warning-severity=0",
+    "lint-all": "phpcs",
+    "fix": "phpcbf"
   },
   "require": {
     "ext-simplexml": "*",

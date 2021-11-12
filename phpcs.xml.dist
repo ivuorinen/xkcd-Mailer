@@ -5,6 +5,9 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
 >
     <description>PHP Code Sniffer configuration file.</description>
+
+    <file>.</file>
+
     <arg name="basepath" value="."/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
