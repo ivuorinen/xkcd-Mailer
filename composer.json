@@ -1,0 +1,32 @@
+{
+  "name": "ivuorinen/xkcd-mailer",
+  "description": "XKCD Mailer",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ismo Vuorinen",
+      "homepage": "https://github.com/ivuorinen"
+    },
+    {
+      "name": "Raam Dev",
+      "homepage": "https://github.com/raamdev"
+    },
+    {
+      "name": "wojas",
+      "homepage": "https://github.com/wojas"
+    }
+  ],
+  "scripts": {
+    "lint": "phpcs --warning-severity=0 .",
+    "lint-all": "phpcs .",
+    "fix": "phpcbf ."
+  },
+  "require": {
+    "ext-simplexml": "*",
+    "ext-curl": "*"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.6"
+  }
+}

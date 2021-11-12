@@ -1,4 +1,8 @@
-<?php if ( empty($here) ) exit('No direct script access allowed');
+<?php
+
+if (empty($here)) {
+    exit('No direct script access allowed');
+}
 
 /**
  * xkcd-Mailer configuration example
@@ -13,5 +17,11 @@ date_default_timezone_set("Europe/Helsinki");
 $mail = "your@email.com";
 $from = "xkcd mailer <xkcdmailer@example.com>";
 
+// Send using mail (false just echoes the results)
+$send = true;
+
 // File to write ID of last post to
 $lastfile = "last.txt";
+
+// Debug mode active
+$debug = false;
