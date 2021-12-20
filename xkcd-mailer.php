@@ -99,22 +99,25 @@ if ($current > $last) {
     if ($send) {
         mail($mail, $subject, $msg, $headers);
     } else {
-        echo $msg . "\n\n";
+        echo htmlspecialchars($msg, ENT_QUOTES) . "\n\n";
     }
 
     $file_write_result = file_put_contents($lastfile, $current);
 
     if (! $file_write_result) {
-        echo "Error writing to file: $lastfile\n";
+        echo htmlspecialchars("Error writing to file: $lastfile\n", ENT_QUOTES);
         exit(1);
     }
 
     if ($debug) {
-        echo "New last is $current (was $last)\n";
+        echo htmlspecialchars("New last is $current (was $last)\n", ENT_QUOTES);
     }
     exit(0);
 }
 
 if ($debug) {
-    echo sprintf("No new XKCD: last=%d current=%d\n", $last, $current);
+    echo htmlspecialchars(
+        sprintf("No new XKCD: last=%d current=%d\n", $last, $current),
+        ENT_QUOTES
+    );
 }
