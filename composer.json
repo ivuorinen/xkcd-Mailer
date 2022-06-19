@@ -27,6 +27,6 @@
     "ext-curl": "*"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "3.6.2"
+    "squizlabs/php_codesniffer": "3.7.1"
   }
 }
